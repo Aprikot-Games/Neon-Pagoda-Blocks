@@ -7,10 +7,11 @@
 extents = Vector2( 52.75, 45 )
 
 [node name="RigidBody2D" type="RigidBody2D"]
+collision_layer = 2147483650
 mass = 1.53061
 gravity_scale = 9.8
 linear_damp = 0.0
-angular_damp = 1000.0
+angular_damp = 0.0
 script = ExtResource( 2 )
 
 [node name="Sprite" type="Sprite" parent="."]

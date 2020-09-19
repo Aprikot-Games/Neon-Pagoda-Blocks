@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://TowerRigidBody.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Level.gd" type="Script" id=2]
@@ -13,11 +13,9 @@ extents = Vector2( 32, 32 )
 [sub_resource type="RectangleShape2D" id=2]
 extents = Vector2( 32, 32 )
 
-[sub_resource type="CircleShape2D" id=3]
-radius = 25.2982
-
 [node name="Level" type="Node2D"]
 script = ExtResource( 2 )
+TowerRigidBody = ExtResource( 1 )
 
 [node name="Polygon2D" type="Polygon2D" parent="."]
 color = Color( 0.168627, 0.0901961, 0.12549, 1 )
@@ -44,8 +42,8 @@ scale = Vector2( 0.3, 0.3 )
 texture = ExtResource( 5 )
 
 [node name="Shaft" type="RigidBody2D" parent="."]
-position = Vector2( 288, 176 )
-collision_layer = 2
+position = Vector2( 288, 168 )
+collision_layer = 0
 collision_mask = 0
 gravity_scale = 128.0
 linear_velocity = Vector2( 1000, 0 )
@@ -65,19 +63,19 @@ position = Vector2( 0, 20.8 )
 scale = Vector2( 0.4, 5 )
 shape = SubResource( 1 )
 
-[node name="PinJoint2D" type="PinJoint2D" parent="."]
+[node name="ShaftJoint" type="PinJoint2D" parent="."]
 position = Vector2( 288, 48 )
 node_a = NodePath("../Axis")
 node_b = NodePath("../Shaft")
 
-[node name="PinJoint2D2" type="PinJoint2D" parent="."]
+[node name="BlockJoint" type="PinJoint2D" parent="."]
 position = Vector2( 288, 352 )
 node_a = NodePath("../Shaft")
 node_b = NodePath("../TowerBlock")
 
 [node name="Axis" type="StaticBody2D" parent="."]
 position = Vector2( 376, 160 )
-collision_layer = 2
+collision_layer = 0
 collision_mask = 0
 __meta__ = {
 "_edit_group_": true
@@ -87,29 +85,16 @@ __meta__ = {
 position = Vector2( -88, -112 )
 shape = SubResource( 2 )
 
-[node name="Sprite" type="Sprite" parent="Axis"]
-position = Vector2( -88, -112 )
-texture = ExtResource( 3 )
-
-[node name="Placeholder" type="RigidBody2D" parent="."]
-collision_mask = 0
-gravity_scale = 0.0
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Placeholder"]
-position = Vector2( 288, 352 )
-shape = SubResource( 3 )
-disabled = true
-
 [node name="TowerBlock" parent="." instance=ExtResource( 1 )]
 position = Vector2( 288, 352 )
+collision_layer = 2
 contacts_reported = 1
 contact_monitor = true
-angular_damp = 0.0
 
 [node name="TowerBase" parent="." instance=ExtResource( 4 )]
 position = Vector2( 288, 504 )
+collision_mask = 2
 
 [node name="BlockTimer" type="Timer" parent="."]
 wait_time = 2.0
-[connection signal="pressed" from="Button" to="TowerBlock" method="_on_Button_pressed"]
-[connection signal="body_entered" from="TowerBlock" to="TowerBlock" method="_on_TowerBlock_body_entered"]
+[connection signal="pressed" from="Button" to="." method="_on_drop_block"]

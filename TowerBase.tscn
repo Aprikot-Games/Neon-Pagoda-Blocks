@@ -5,7 +5,8 @@
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 52.7584, 45.7238 )
 
-[node name="Node2D" type="StaticBody2D"]
+[node name="Node2D" type="RigidBody2D"]
+mode = 1
 
 [node name="Sprite" type="Sprite" parent="."]
 scale = Vector2( 0.3, 0.3 )
