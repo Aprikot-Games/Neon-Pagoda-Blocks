@@ -1,4 +1,4 @@
-extends Position2D
+extends RigidBody2D
 #class_name Pendulum
 
 var pivot_point:Vector2

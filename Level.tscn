@@ -1,10 +1,68 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=6 format=2]
 
-[ext_resource path="res://PendulumExample.tscn" type="PackedScene" id=1]
+[ext_resource path="res://TowerRigidBody.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Level.gd" type="Script" id=2]
+[ext_resource path="res://icon.png" type="Texture" id=3]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 32, 32 )
+
+[sub_resource type="RectangleShape2D" id=2]
+extents = Vector2( 32, 32 )
 
 [node name="Level" type="Node2D"]
 script = ExtResource( 2 )
 
-[node name="Node2D" parent="." instance=ExtResource( 1 )]
-position = Vector2( 128, 64 )
+[node name="Button" type="Button" parent="."]
+margin_left = 248.0
+margin_top = 432.0
+margin_right = 324.0
+margin_bottom = 502.0
+icon = ExtResource( 3 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="RigidBody2D" type="RigidBody2D" parent="."]
+position = Vector2( 288, 176 )
+gravity_scale = 4.0
+linear_velocity = Vector2( 200, 0 )
+linear_damp = 0.0
+angular_damp = 0.0
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Sprite" type="Sprite" parent="RigidBody2D"]
+position = Vector2( 3.8147e-06, 20 )
+scale = Vector2( 0.5, 5.125 )
+texture = ExtResource( 3 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="RigidBody2D"]
+position = Vector2( 0, 20.8 )
+scale = Vector2( 0.4, 5 )
+shape = SubResource( 1 )
+
+[node name="PinJoint2D" type="PinJoint2D" parent="."]
+position = Vector2( 288, 48 )
+node_a = NodePath("../RigidBody2D")
+node_b = NodePath("../StaticBody2D")
+
+[node name="PinJoint2D2" type="PinJoint2D" parent="."]
+position = Vector2( 288, 352 )
+node_a = NodePath("../RigidBody2D2")
+node_b = NodePath("../RigidBody2D")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+position = Vector2( 376, 160 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2( -88, -112 )
+shape = SubResource( 2 )
+
+[node name="Sprite" type="Sprite" parent="StaticBody2D"]
+position = Vector2( -88, -112 )
+texture = ExtResource( 3 )
+
+[node name="RigidBody2D2" parent="." instance=ExtResource( 1 )]
+position = Vector2( 288, 352 )
