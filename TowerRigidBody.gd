@@ -3,11 +3,19 @@ extends RigidBody2D
 signal block_ready(res)
 var state = 0
 
-# Called when the node enters the scene tree for the first time.
-func _ready():
-	pass # Replace with function body.
+enum type{BASE,LIFE}
+var block_type = type.BASE
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
+var life_sym_tex = preload("res://icon.png") # Life symbol sprite
+var symbols_tex = [life_sym_tex]
+
+func _ready():
+	if block_type == type.LIFE:
+		$Symbol.set_texture(life_sym_tex)
+		$Symbol.show()
+	else:
+		$Symbol.hide()
+
 func _process(delta):
 	if state == 1:
 		if abs(angular_velocity) < 0.1:
@@ -16,7 +24,7 @@ func _process(delta):
 			self.set_collision_layer_bit(1, false)
 			self.set_collision_layer_bit(0, true)
 			state = 2
-			emit_signal("block_ready", true)
+			emit_signal("block_ready", 0)
 		else:
 			print("Waiting")
 
@@ -29,5 +37,8 @@ func _on_Timer_timeout():
 
 func _on_screen_exited():
 	print("Erased!")
-	emit_signal("block_ready", false)
+	if state == 1 or state == 0: # Falling cases
+		emit_signal("block_ready", 1)
+	else:
+		emit_signal("block_ready", 2)
 	queue_free()

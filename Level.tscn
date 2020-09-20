@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://TowerRigidBody.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Level.gd" type="Script" id=2]
@@ -6,6 +6,7 @@
 [ext_resource path="res://TowerBase.tscn" type="PackedScene" id=4]
 [ext_resource path="res://resources/bg-n1.png" type="Texture" id=5]
 [ext_resource path="res://resources/bg-n1p2.png" type="Texture" id=6]
+[ext_resource path="res://resources/bg-n2p2.png" type="Texture" id=7]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 32, 32 )
@@ -17,20 +18,47 @@ extents = Vector2( 32, 32 )
 script = ExtResource( 2 )
 TowerRigidBody = ExtResource( 1 )
 
-[node name="Polygon2D" type="Polygon2D" parent="."]
-color = Color( 0.168627, 0.0901961, 0.12549, 1 )
-polygon = PoolVector2Array( 0, 0, 640, 0, 640, 592, 0, 592 )
+[node name="Polygon2D2" type="Polygon2D" parent="."]
+position = Vector2( 6.10352e-05, 64 )
+scale = Vector2( 1, 1 )
+color = Color( 0.423529, 0.203922, 0.615686, 1 )
+polygon = PoolVector2Array( 0, -120, 328, -120, 640, -120, 640, -96, 640, 592, 0, 592 )
+
+[node name="Back3" type="Sprite" parent="."]
+position = Vector2( 352, -184 )
+scale = Vector2( 0.3, 0.3 )
+texture = ExtResource( 7 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Polygon2D" type="Polygon2D" parent="Back3"]
+position = Vector2( -1180, 433.333 )
+scale = Vector2( 2.5, 2.5 )
+color = Color( 0.788235, 0.360784, 0.819608, 1 )
+polygon = PoolVector2Array( 0, -8, 328, -8, 552.394, -8, 856, -5.33334, 856, 293.333, 856, 592, 0, 592 )
+
+[node name="Tween" type="Tween" parent="Back3"]
 
 [node name="Back2" type="Sprite" parent="."]
-position = Vector2( 536, 296 )
-scale = Vector2( 0.45, 0.45 )
+position = Vector2( 360, 192 )
+scale = Vector2( 0.3, 0.3 )
 texture = ExtResource( 6 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Polygon2D2" type="Polygon2D" parent="Back2"]
+position = Vector2( -1191.11, -591.111 )
+scale = Vector2( 2.22222, 2.22222 )
+color = Color( 0.341176, 0.0784314, 0.180392, 1 )
+polygon = PoolVector2Array( 0, 320, 304, 320, 956, 326, 956, 458, 956, 794, -3.99994, 794 )
 
 [node name="Tween" type="Tween" parent="Back2"]
 
 [node name="Back1" type="Sprite" parent="."]
-position = Vector2( 464, 400 )
-scale = Vector2( 0.45, 0.45 )
+position = Vector2( 360, 392 )
+scale = Vector2( 0.3, 0.45 )
 texture = ExtResource( 5 )
 
 [node name="Tween" type="Tween" parent="Back1"]
@@ -50,7 +78,7 @@ position = Vector2( 288, 168 )
 collision_layer = 0
 collision_mask = 0
 gravity_scale = 128.0
-linear_velocity = Vector2( 1000, 0 )
+linear_velocity = Vector2( 2000, 0 )
 linear_damp = 0.0
 angular_damp = 0.0
 __meta__ = {
@@ -98,5 +126,7 @@ position = Vector2( 288, 504 )
 collision_mask = 2
 
 [node name="BlockTimer" type="Timer" parent="."]
-wait_time = 2.0
+one_shot = true
 [connection signal="pressed" from="Button" to="." method="_on_drop_block"]
+[connection signal="block_ready" from="TowerBase" to="." method="_on_block_ready"]
+[connection signal="timeout" from="BlockTimer" to="." method="_on_BlockTimer_timeout"]

@@ -19,6 +19,13 @@ config/name="Mini Jam 63"
 run/main_scene="res://Level.tscn"
 config/icon="res://icon.png"
 
+[display]
+
+window/size/width=578
+window/size/height=578
+window/stretch/mode="viewport"
+window/stretch/aspect="keep"
+
 [rendering]
 
 environment/default_environment="res://default_env.tres"
