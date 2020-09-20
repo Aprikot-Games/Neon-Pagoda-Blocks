@@ -21,6 +21,20 @@ TowerRigidBody = ExtResource( 1 )
 color = Color( 0.168627, 0.0901961, 0.12549, 1 )
 polygon = PoolVector2Array( 0, 0, 640, 0, 640, 592, 0, 592 )
 
+[node name="Back2" type="Sprite" parent="."]
+position = Vector2( 536, 296 )
+scale = Vector2( 0.45, 0.45 )
+texture = ExtResource( 6 )
+
+[node name="Tween" type="Tween" parent="Back2"]
+
+[node name="Back1" type="Sprite" parent="."]
+position = Vector2( 464, 400 )
+scale = Vector2( 0.45, 0.45 )
+texture = ExtResource( 5 )
+
+[node name="Tween" type="Tween" parent="Back1"]
+
 [node name="Button" type="Button" parent="."]
 margin_left = 104.0
 margin_top = 128.0
@@ -30,16 +44,6 @@ icon = ExtResource( 3 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
-
-[node name="Back2" type="Sprite" parent="."]
-position = Vector2( 307, 415 )
-scale = Vector2( 0.3, 0.3 )
-texture = ExtResource( 6 )
-
-[node name="Back1" type="Sprite" parent="."]
-position = Vector2( 307, 463 )
-scale = Vector2( 0.3, 0.3 )
-texture = ExtResource( 5 )
 
 [node name="Shaft" type="RigidBody2D" parent="."]
 position = Vector2( 288, 168 )
@@ -88,8 +92,6 @@ shape = SubResource( 2 )
 [node name="TowerBlock" parent="." instance=ExtResource( 1 )]
 position = Vector2( 288, 352 )
 collision_layer = 2
-contacts_reported = 1
-contact_monitor = true
 
 [node name="TowerBase" parent="." instance=ExtResource( 4 )]
 position = Vector2( 288, 504 )
