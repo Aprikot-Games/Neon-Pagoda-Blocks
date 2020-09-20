@@ -14,6 +14,7 @@ func _ready():
 	$TowerBlock.set_collision_layer_bit(1, false)
 	$TowerBlock.set_collision_mask_bit(0, false)
 	tower.append($TowerBase)
+	#$Button.hide()
 
 func _on_drop_block():
 	if $TowerBlock.visible == true:
@@ -65,3 +66,7 @@ func _on_block_ready(res):
 
 func _on_BlockTimer_timeout():
 	$TowerBlock.show()
+
+func _on_game_over():
+	$TowerBlock.hide()
+	$Button.hide()

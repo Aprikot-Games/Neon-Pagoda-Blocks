@@ -1,8 +1,7 @@
-[gd_scene load_steps=13 format=2]
+[gd_scene load_steps=12 format=2]
 
 [ext_resource path="res://TowerRigidBody.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Level.gd" type="Script" id=2]
-[ext_resource path="res://icon.png" type="Texture" id=3]
 [ext_resource path="res://TowerBase.tscn" type="PackedScene" id=4]
 [ext_resource path="res://resources/bg-n1.png" type="Texture" id=5]
 [ext_resource path="res://resources/bg-n1p2.png" type="Texture" id=6]
@@ -106,11 +105,10 @@ color = Color( 0.623529, 0.117647, 0.192157, 1 )
 polygon = PoolVector2Array( 0, 320, 304, 320, 956, 326, 956, 458, 956, 794, -3.99994, 794 )
 
 [node name="Button" type="Button" parent="."]
-margin_left = 248.0
-margin_top = 373.0
-margin_right = 324.0
-margin_bottom = 443.0
-icon = ExtResource( 3 )
+margin_left = 56.0
+margin_top = 341.0
+margin_right = 184.0
+margin_bottom = 381.0
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -120,7 +118,7 @@ position = Vector2( 288, 133 )
 collision_layer = 0
 collision_mask = 0
 gravity_scale = 128.0
-linear_velocity = Vector2( 2000, 0 )
+linear_velocity = Vector2( 3000, 0 )
 linear_damp = 0.0
 angular_damp = 0.0
 __meta__ = {
