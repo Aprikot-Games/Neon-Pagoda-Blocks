@@ -1,13 +1,16 @@
 extends Node2D
 
 export (PackedScene) var TowerRigidBody
+signal lost_life
 
 var tower = []
 var current_block
 var available = true
+var backs
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	backs = [$Back5, $Back4, $Back3, $Back2, $Back1]
 	$TowerBlock.set_collision_layer_bit(1, false)
 	$TowerBlock.set_collision_mask_bit(0, false)
 	tower.append($TowerBase)
@@ -24,24 +27,16 @@ func _on_drop_block():
 		available = false
 
 func shift_landscape():
-	var tween = get_node("Back1/Tween")
-	tween.interpolate_property($Back1, "position",
-			Vector2($Back1.position.x, $Back1.position.y), 
-			Vector2($Back1.position.x, $Back1.position.y + 90), 1,
-			Tween.TRANS_LINEAR, Tween.EASE_IN_OUT)
-	tween.start()
-	tween = get_node("Back2/Tween")
-	tween.interpolate_property($Back2, "position",
-			Vector2($Back2.position.x, $Back2.position.y), 
-			Vector2($Back2.position.x, $Back2.position.y + 67.5), 1,
-			Tween.TRANS_LINEAR, Tween.EASE_IN_OUT)
-	tween.start()
-	tween = get_node("Back3/Tween")
-	tween.interpolate_property($Back3, "position",
-			Vector2($Back3.position.x, $Back3.position.y), 
-			Vector2($Back3.position.x, $Back3.position.y + 45), 1,
-			Tween.TRANS_LINEAR, Tween.EASE_IN_OUT)
-	tween.start()
+	var c = 0
+	for back in backs:
+		print(backs)
+		var tween = back.get_node("Tween")
+		tween.interpolate_property(back, "position",
+				Vector2(back.position.x, back.position.y), 
+				Vector2(back.position.x, back.position.y + 35+(c*4)), 1,
+				Tween.TRANS_LINEAR, Tween.EASE_IN_OUT)
+		tween.start()
+		c+=1
 
 func shift_block(block):
 	var tween = block.get_node("Tween")
@@ -64,6 +59,7 @@ func _on_block_ready(res):
 		$BlockTimer.start()
 	elif res == 1: # Falling block
 		$TowerBlock.show()
+		emit_signal("lost_life")
 	elif res == 2: # Old block
 		tower.pop_front()
 
