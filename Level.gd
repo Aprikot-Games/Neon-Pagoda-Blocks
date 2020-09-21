@@ -1,19 +1,22 @@
 extends Node2D
 
 export (PackedScene) var TowerRigidBody
+export (PackedScene) var TowerBase
 signal lost_life
 
 var tower = []
 var current_block
 var available = true
 var backs
+var initial_back_pos
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	backs = [$Back5, $Back4, $Back3, $Back2, $Back1]
+	initial_back_pos = [$Back5.position, $Back4.position, $Back3.position, $Back2.position, $Back1.position]
 	$TowerBlock.set_collision_layer_bit(1, false)
 	$TowerBlock.set_collision_mask_bit(0, false)
-	tower.append($TowerBase)
+	#tower.append($TowerBase)
 	#$Button.hide()
 
 func _on_drop_block():
@@ -70,3 +73,19 @@ func _on_BlockTimer_timeout():
 func _on_game_over():
 	$TowerBlock.hide()
 	$Button.hide()
+
+func _on_new_game():
+	$TowerBlock.show()
+	var tower_base_new = TowerBase.instance()
+	add_child(tower_base_new)
+	tower_base_new.connect("block_ready", self, "on_block_ready")
+	for block in tower:
+		if block != null:
+			block.queue_free()
+	tower = []
+	tower.append(tower_base_new)
+	tower_base_new.position = Vector2(288,505)
+	tower_base_new.show()
+	for c in range(5):
+		backs[c].position = initial_back_pos[c]
+	$Button.show()

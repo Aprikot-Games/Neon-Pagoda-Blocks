@@ -2,10 +2,16 @@
 
 [ext_resource path="res://HUD.gd" type="Script" id=1]
 [ext_resource path="res://resources/full-heart.png" type="Texture" id=2]
-[ext_resource path="res://icon.png" type="Texture" id=3]
+[ext_resource path="res://resources/cover.png" type="Texture" id=3]
 
 [node name="CanvasLayer" type="CanvasLayer"]
 script = ExtResource( 1 )
+
+[node name="Background" type="Polygon2D" parent="."]
+position = Vector2( 288, 216 )
+scale = Vector2( 46, 0.45 )
+color = Color( 0.0901961, 0.0980392, 0.105882, 1 )
+polygon = PoolVector2Array( -6.4, -480, 6.4, -480, 6.4, 800, -6.4, 800 )
 
 [node name="Heart1" type="Sprite" parent="."]
 position = Vector2( 32, 40 )
@@ -23,8 +29,8 @@ scale = Vector2( 0.3, 0.3 )
 texture = ExtResource( 2 )
 
 [node name="Splash" type="Sprite" parent="."]
-position = Vector2( 288, 288 )
-scale = Vector2( 9, 9 )
+position = Vector2( 288, 216 )
+scale = Vector2( 0.45, 0.45 )
 texture = ExtResource( 3 )
 
 [node name="Timer" type="Timer" parent="."]
@@ -35,7 +41,8 @@ one_shot = true
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_top = -98.0
+margin_top = -178.0
+margin_bottom = -80.0
 text = "New Game"
 __meta__ = {
 "_edit_use_anchors_": false

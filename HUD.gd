@@ -31,6 +31,7 @@ func _on_Timer_timeout():
 	for heart in hearts:
 		heart.hide()
 	$Splash.show()
+	$Background.show()
 	$Button.show()
 	emit_signal("menu_screen")
 
@@ -38,6 +39,7 @@ func _on_new_game():
 	for heart in hearts:
 		heart.show()
 	$Splash.hide()
+	$Background.hide()
 	$Button.hide()
 	lives = 3
 	emit_signal("start_game")

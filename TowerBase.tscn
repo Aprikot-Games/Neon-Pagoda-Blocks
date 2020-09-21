@@ -4,7 +4,7 @@
 [ext_resource path="res://TowerBase.gd" type="Script" id=2]
 
 [sub_resource type="RectangleShape2D" id=1]
-extents = Vector2( 52.7584, 45.7238 )
+extents = Vector2( 52.7584, 48.4882 )
 
 [node name="Node2D" type="RigidBody2D"]
 mode = 1
@@ -21,6 +21,6 @@ shape = SubResource( 1 )
 [node name="Tween" type="Tween" parent="."]
 
 [node name="VisibilityNotifier2D" type="VisibilityNotifier2D" parent="."]
-position = Vector2( -5.72205e-06, 4 )
-scale = Vector2( 4.8, 4.4 )
+position = Vector2( -5.72205e-06, 3.62837 )
+scale = Vector2( 4.8, 4.43716 )
 [connection signal="screen_exited" from="VisibilityNotifier2D" to="." method="_on_VisibilityNotifier2D_screen_exited"]

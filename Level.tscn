@@ -20,6 +20,7 @@ extents = Vector2( 32, 32 )
 position = Vector2( 0, -109 )
 script = ExtResource( 2 )
 TowerRigidBody = ExtResource( 1 )
+TowerBase = ExtResource( 4 )
 
 [node name="Block5" type="Polygon2D" parent="."]
 position = Vector2( -24, 118.999 )
@@ -161,12 +162,7 @@ shape = SubResource( 2 )
 position = Vector2( 288, 317 )
 collision_layer = 2
 
-[node name="TowerBase" parent="." instance=ExtResource( 4 )]
-position = Vector2( 288, 504 )
-collision_mask = 2
-
 [node name="BlockTimer" type="Timer" parent="."]
 one_shot = true
 [connection signal="pressed" from="Button" to="." method="_on_drop_block"]
-[connection signal="block_ready" from="TowerBase" to="." method="_on_block_ready"]
 [connection signal="timeout" from="BlockTimer" to="." method="_on_BlockTimer_timeout"]

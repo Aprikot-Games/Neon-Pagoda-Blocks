@@ -4,7 +4,7 @@
 [ext_resource path="res://TowerRigidBody.gd" type="Script" id=2]
 
 [sub_resource type="RectangleShape2D" id=1]
-extents = Vector2( 52.75, 45 )
+extents = Vector2( 52.75, 45.132 )
 
 [node name="RigidBody2D" type="RigidBody2D"]
 collision_layer = 2147483650

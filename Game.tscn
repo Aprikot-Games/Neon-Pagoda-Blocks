@@ -14,3 +14,4 @@ script = ExtResource( 3 )
 [connection signal="game_over" from="CanvasLayer" to="Level" method="_on_game_over"]
 [connection signal="menu_screen" from="CanvasLayer" to="." method="_on_CanvasLayer_menu_screen"]
 [connection signal="start_game" from="CanvasLayer" to="." method="_on_CanvasLayer_start_game"]
+[connection signal="start_game" from="CanvasLayer" to="Level" method="_on_new_game"]
