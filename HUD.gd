@@ -15,6 +15,7 @@ func _ready():
 	hearts.append($Heart1)
 	hearts.append($Heart2)
 	hearts.append($Heart3)
+	$GameOver.hide()
 	for heart in hearts:
 		heart.hide()
 
@@ -26,6 +27,7 @@ func _on_lost_life():
 		print("Game Over")
 		emit_signal("game_over")
 		$Timer.start()
+		$GameOver.show()
 
 func _on_Timer_timeout():
 	for heart in hearts:
@@ -33,13 +35,16 @@ func _on_Timer_timeout():
 	$Splash.show()
 	$Background.show()
 	$Button.show()
+	$GameOver.hide()
 	emit_signal("menu_screen")
 
 func _on_new_game():
 	for heart in hearts:
 		heart.show()
+		heart.set_texture(full_heart)
 	$Splash.hide()
 	$Background.hide()
 	$Button.hide()
+	$GameOver.hide()
 	lives = 3
 	emit_signal("start_game")

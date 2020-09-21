@@ -65,7 +65,8 @@ func _on_block_ready(res):
 		$TowerBlock.show()
 		emit_signal("lost_life")
 	elif res == 2: # Old block
-		tower.pop_front()
+		print("Old block")
+		#tower.pop_front()
 
 func _on_BlockTimer_timeout():
 	$TowerBlock.show()
@@ -83,9 +84,11 @@ func _on_new_game():
 		if block != null:
 			block.queue_free()
 	tower = []
-	tower.append(tower_base_new)
 	tower_base_new.position = Vector2(288,505)
 	tower_base_new.show()
+	print("Appending first block")
+	tower.append(tower_base_new)
+	print(tower)
 	for c in range(5):
 		backs[c].position = initial_back_pos[c]
 	$Button.show()

@@ -106,10 +106,10 @@ color = Color( 0.623529, 0.117647, 0.192157, 1 )
 polygon = PoolVector2Array( 0, 320, 304, 320, 956, 326, 956, 458, 956, 794, -3.99994, 794 )
 
 [node name="Button" type="Button" parent="."]
-margin_left = 56.0
-margin_top = 341.0
-margin_right = 184.0
-margin_bottom = 381.0
+modulate = Color( 1, 1, 1, 0 )
+margin_top = 109.0
+margin_right = 576.0
+margin_bottom = 685.0
 __meta__ = {
 "_edit_use_anchors_": false
 }

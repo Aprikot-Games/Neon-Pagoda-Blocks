@@ -7,6 +7,9 @@ enum type{BASE,LIFE}
 var block_type = type.BASE
 
 var life_sym_tex = preload("res://icon.png") # Life symbol sprite
+var pagoda_off = preload("res://resources/pagoda-off.png")
+var pagoda_on = preload("res://resources/pagoda.png")
+
 var symbols_tex = [life_sym_tex]
 
 func _ready():
@@ -25,6 +28,8 @@ func _process(delta):
 			self.set_collision_layer_bit(0, true)
 			state = 2
 			emit_signal("block_ready", 0)
+			$Sprite.set_texture(pagoda_on)
+			$Flash.play()
 		else:
 			print("Waiting")
 

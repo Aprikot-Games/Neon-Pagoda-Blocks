@@ -1,8 +1,11 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://HUD.gd" type="Script" id=1]
 [ext_resource path="res://resources/full-heart.png" type="Texture" id=2]
 [ext_resource path="res://resources/cover.png" type="Texture" id=3]
+[ext_resource path="res://resources/button-start.png" type="Texture" id=4]
+[ext_resource path="res://resources/button-start-press.png" type="Texture" id=5]
+[ext_resource path="res://resources/button-gameover.png" type="Texture" id=6]
 
 [node name="CanvasLayer" type="CanvasLayer"]
 script = ExtResource( 1 )
@@ -37,16 +40,26 @@ texture = ExtResource( 3 )
 wait_time = 2.0
 one_shot = true
 
-[node name="Button" type="Button" parent="."]
+[node name="Button" type="TextureButton" parent="."]
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_top = -178.0
-margin_bottom = -80.0
-text = "New Game"
+margin_left = 127.0
+margin_top = -202.0
+margin_right = -107.0
+margin_bottom = -112.0
+texture_normal = ExtResource( 4 )
+texture_pressed = ExtResource( 5 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
+
+[node name="GameOver" type="Sprite" parent="."]
+position = Vector2( 296, 368 )
+scale = Vector2( 0.3, 0.3 )
+texture = ExtResource( 6 )
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 [connection signal="new_game" from="." to="." method="_on_new_game"]
 [connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]
 [connection signal="pressed" from="Button" to="." method="_on_new_game"]
