@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://HUD.gd" type="Script" id=1]
 [ext_resource path="res://resources/full-heart.png" type="Texture" id=2]
@@ -6,6 +6,7 @@
 [ext_resource path="res://resources/button-start.png" type="Texture" id=4]
 [ext_resource path="res://resources/button-start-press.png" type="Texture" id=5]
 [ext_resource path="res://resources/button-gameover.png" type="Texture" id=6]
+[ext_resource path="res://music/inspired-by-kevin-macleod-from-filmmusic-io.wav" type="AudioStream" id=7]
 
 [node name="CanvasLayer" type="CanvasLayer"]
 script = ExtResource( 1 )
@@ -60,6 +61,8 @@ scale = Vector2( 0.3, 0.3 )
 texture = ExtResource( 6 )
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 7 )
+autoplay = true
 [connection signal="new_game" from="." to="." method="_on_new_game"]
 [connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]
 [connection signal="pressed" from="Button" to="." method="_on_new_game"]

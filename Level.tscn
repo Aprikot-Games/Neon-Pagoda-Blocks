@@ -1,7 +1,8 @@
-[gd_scene load_steps=12 format=2]
+[gd_scene load_steps=14 format=2]
 
 [ext_resource path="res://TowerRigidBody.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Level.gd" type="Script" id=2]
+[ext_resource path="res://resources/moon.png" type="Texture" id=3]
 [ext_resource path="res://TowerBase.tscn" type="PackedScene" id=4]
 [ext_resource path="res://resources/bg-n1.png" type="Texture" id=5]
 [ext_resource path="res://resources/bg-n1p2.png" type="Texture" id=6]
@@ -9,6 +10,7 @@
 [ext_resource path="res://resources/bg-n2.png" type="Texture" id=8]
 [ext_resource path="res://resources/sky-1.png" type="Texture" id=9]
 [ext_resource path="res://resources/hook.png" type="Texture" id=10]
+[ext_resource path="res://resources/sky-4.png" type="Texture" id=11]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 32, 32 )
@@ -28,13 +30,20 @@ scale = Vector2( 1.2, 1.2 )
 color = Color( 0.0901961, 0.0980392, 0.105882, 1 )
 polygon = PoolVector2Array( 0, -120, 328, -120, 640, -120, 640, -96, 640, 592, 0, 592 )
 
+[node name="Sprite" type="Sprite" parent="."]
+position = Vector2( 320, 261 )
+scale = Vector2( 0.3, 0.3 )
+texture = ExtResource( 11 )
+
+[node name="Sprite2" type="Sprite" parent="."]
+position = Vector2( 480, 197 )
+scale = Vector2( 0.3, 0.3 )
+texture = ExtResource( 3 )
+
 [node name="Back5" type="Sprite" parent="."]
 position = Vector2( 321.5, -266 )
 scale = Vector2( 0.3, 0.3 )
 texture = ExtResource( 9 )
-__meta__ = {
-"_edit_group_": true
-}
 
 [node name="Tween" type="Tween" parent="Back5"]
 

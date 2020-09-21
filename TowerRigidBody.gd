@@ -30,6 +30,7 @@ func _process(delta):
 			emit_signal("block_ready", 0)
 			$Sprite.set_texture(pagoda_on)
 			$Flash.play()
+			$FlashSound.play()
 		else:
 			print("Waiting")
 
